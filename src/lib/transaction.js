@@ -1,5 +1,5 @@
 const errorMessages = require('./errorMessages')
-const config = require('../config.json')
+const config = require('../../config')
 const BCHJS = require('@chris.troutner/bch-js')
 const BigNumber = require('bignumber.js')
 const { TransactionBuilder, ECSignature } = require('bitcoincashjs-lib')

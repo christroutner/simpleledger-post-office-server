@@ -2,3 +2,7 @@ node_modules/
 .node_modules/
 yarn-error.log
 config.json
+coverage/
+.nyc_output/
+server-config.json
+

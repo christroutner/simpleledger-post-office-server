@@ -1,6 +1,6 @@
 const errorMessages = require('./errorMessages')
 const BCHJS = require('@chris.troutner/bch-js')
-const config = require('../config.json')
+const config = require('../../config')
 
 const bchjs = new BCHJS({
   restURL:
@@ -10,17 +10,28 @@ const bchjs = new BCHJS({
   apiToken: config.apiKey
 })
 
-// const MIN_BYTES_INPUT = 181
-
-const fetchUTXOsForStampGeneration = async cashAddress => {
-  const utxoResponse = await bchjs.Electrumx.utxo(cashAddress)
-  const utxos = utxoResponse.utxos.filter(
-    utxo => utxo.value > config.postageRate.weight * 2
-  )
-  if (utxos.length <= 0) {
-    throw new Error('Insufficient Balance for Stamp Generation')
+class Network {
+  constructor (config) {
+    this.bchjs = bchjs
   }
-  return utxos
+
+  async fetchUTXOsForStampGeneration (cashAddress) {
+    // Get UTXOs for the post office wallet.
+    const utxoResponse = await this.bchjs.Electrumx.utxo(cashAddress)
+    // console.log(`utxoResponse: ${JSON.stringify(utxoResponse, null, 2)}`)
+
+    // Get UTXOs that are big enough to split into dust (stamps).
+    const utxos = utxoResponse.utxos.filter(
+      utxo => utxo.value > config.postageRate.weight * 2
+    )
+
+    // Exit if there are UTXOs to split.
+    if (utxos.length <= 0) {
+      throw new Error('Insufficient Balance for Stamp Generation')
+    }
+
+    return utxos
+  }
 }
 
 const fetchUTXOsForNumberOfStampsNeeded = async (
@@ -67,6 +78,6 @@ const broadcastTransaction = async rawTransactionHex => {
 module.exports = {
   fetchUTXOsForNumberOfStampsNeeded,
   validateSLPInputs,
-  fetchUTXOsForStampGeneration,
-  broadcastTransaction
+  broadcastTransaction,
+  Network
 }

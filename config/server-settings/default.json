@@ -1,0 +1,20 @@
+{
+  "mnemonic": "entry sustain zoo private champion insane income extend south denial coyote street",
+  "apiKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlODhhY2JmMDIyMWMxMDAxMmFkOTNmZiIsImVtYWlsIjoiY2hyaXMudHJvdXRuZXJAZ21haWwuY29tIiwiYXBpTGV2ZWwiOjQwLCJyYXRlTGltaXQiOjMsImlhdCI6MTU5NTE2NjU1OSwiZXhwIjoxNTk3NzU4NTU5fQ.o23-M7bseQcf_5IIroUTXVaLTrESbNPMZb-eroFhBJI",
+  "network": "mainnet",
+  "postageRate": {
+    "version": 1,
+    "address": "simpleledger:qz27uwddwgczpkvg0eqnyemlaqnlax75vuqte26mpx",
+    "weight": 365,
+    "transactionttl": 30,
+    "stamps": [
+      {
+        "name": "Permissionless Software Foundation",
+        "symbol": "PSF",
+        "tokenId": "38e97c5d7d3585a2cbf3f9580c82ca33985f9cb0845d4dcce220cb709f9538b0",
+        "rate": "1000000",
+        "decimals": 8
+      }
+    ]
+  }
+}
